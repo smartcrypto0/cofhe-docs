@@ -41,20 +41,20 @@ const logState = (state) => {
     console.log(`Log Encrypt State :: ${state}`);
 };
 
-let result: [CofheInBool] = await cofhejs.encrypt(logState, [Encryptable.bool(true)]);
-let result: [CoFheInUint8] = await cofhejs.encrypt(logState, [Encryptable.uint8(10)]);
-let result: [CoFheInUint16] = await cofhejs.encrypt(logState, [Encryptable.uint16(10)]);
-let result: [CoFheInUint32] = await cofhejs.encrypt(logState, [Encryptable.uint32(10)]);
-let result: [CoFheInUint64] = await cofhejs.encrypt(logState, [Encryptable.uint64(10)]);
-let result: [CoFheInUint128] = await cofhejs.encrypt(logState, [Encryptable.uint128(10)]);
-let result: [CoFheInUint256] = await cofhejs.encrypt(logState, [Encryptable.uint256(10)]);
-let result: [CoFheInAddress] = await cofhejs.encrypt(logState, [Encryptable.address("0x1234567890123456789012345678901234567890")]);
+let result: [CofheInBool] = await cofhejs.encrypt([Encryptable.bool(true)], logState);
+let result: [CoFheInUint8] = await cofhejs.encrypt([Encryptable.uint8(10)], logState);
+let result: [CoFheInUint16] = await cofhejs.encrypt([Encryptable.uint16(10)], logState);
+let result: [CoFheInUint32] = await cofhejs.encrypt([Encryptable.uint32(10)], logState);
+let result: [CoFheInUint64] = await cofhejs.encrypt([Encryptable.uint64(10)], logState);
+let result: [CoFheInUint128] = await cofhejs.encrypt([Encryptable.uint128(10)], logState);
+let result: [CoFheInUint256] = await cofhejs.encrypt([Encryptable.uint256(10)], logState);
+let result: [CoFheInAddress] = await cofhejs.encrypt([Encryptable.address("0x1234567890123456789012345678901234567890")], logState);
 ```
 
 Or, we can use the nested form to encrypt multiple values at once:
 
 ```javascript
-let result = await cofhejs.encrypt(logState, [
+let result = await cofhejs.encrypt([
 	Encryptable.bool(true),
 	Encryptable.uint8(10),
 	Encryptable.uint16(10),
@@ -63,7 +63,7 @@ let result = await cofhejs.encrypt(logState, [
 	Encryptable.uint128(10),
 	Encryptable.uint256(10),
 	Encryptable.address('0x1234567890123456789012345678901234567890'),
-])
+], logState)
 ```
 
 The returned types from the encrypt function will be an array of the type `CoFheInBool`, `CoFheInUint8`, `CoFheInUint16`, `CoFheInUint32` (or 64/128/256) or `CoFheInAddress` depending on the type you specified.

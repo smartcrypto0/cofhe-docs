@@ -214,7 +214,7 @@ const logState = (state) => {
 	// diff-add
 }
 // diff-add
-const encryptedValues = await cofhejs.encrypt(logState, [Encryptable.uint32(10n), Encryptable.uint64(20n)])
+const encryptedValues = await cofhejs.encrypt([Encryptable.uint32(10n), Encryptable.uint64(20n)], logState)
 ```
 
 ### 3. Permits and Unsealing

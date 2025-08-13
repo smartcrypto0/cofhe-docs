@@ -120,11 +120,11 @@ const logState = (state: EncryptStep) => {
 };
 
 // This will encrypt only the encrypted values (total 4 in this case)
-const encryptedValues = await cofhejs.encrypt(logState, [
+const encryptedValues = await cofhejs.encrypt([
     { a: Encryptable.bool(false), b: Encryptable.uint64(10n), c: "hello" },
     ["hello", 20n, Encryptable.address(contractAddress)],
     Encryptable.uint8("10"),
-] as const);
+] as const, logState);
 
 const contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, wallet);
 // Use the encrypted value of 10n
@@ -259,7 +259,7 @@ await decryptCounter();
 // Result should be 2
 await readCounterDecryptedValue();
 
-const encryptedValues = await cofhejs.encrypt(logState, [Encryptable.uint64(10n)]);  
+const encryptedValues = await cofhejs.encrypt([Encryptable.uint64(10n)], logState);  
 await resetCounter(encryptedValues.data[0]);
 
 // Result should be 10
