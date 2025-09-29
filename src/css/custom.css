@@ -973,117 +973,80 @@ pre code[class*="language-"]{
 }
 
 /* ===== Brand table styling ===== */
-:root{
-  --tbl-bg: #ffffff;
-  --tbl-text: #001623;
-  --tbl-border: #ebedee;
-  --tbl-head-bg: #fafafa;
-  --tbl-shadow: 0 6px 20px rgba(0,22,35,.06);
-  --tbl-accent: #0ad9dc; /* used for hovers/focus outlines */
+/* ===== Brand table styling (locked with !important) ===== */
+:root {
+  --tbl-bg: #ffffff !important;
+  --tbl-text: #001623 !important;
+  --tbl-border: #ebedee !important;
+  --tbl-head-bg: #fafafa !important;
+  --tbl-shadow: 0 6px 20px rgba(0,22,35,.06) !important;
+  --tbl-accent: #0ad9dc !important; /* used for hovers/focus outlines */
 }
-[data-theme='dark']{
-  --tbl-bg: #122530;
-  --tbl-text: #fafafa;
-  --tbl-border: rgba(250,250,250,.12);
-  --tbl-head-bg: #001623;
-  --tbl-shadow: 0 10px 28px rgba(0,0,0,.45);
+[data-theme='dark'] {
+  --tbl-bg: #122530 !important;
+  --tbl-text: #fafafa !important;
+  --tbl-border: rgba(250,250,250,.12) !important;
+  --tbl-head-bg: #001623 !important;
+  --tbl-shadow: 0 10px 28px rgba(0,0,0,.45) !important;
 }
 
 /* Base table look */
-.markdown table{
-  width: fit-content;
-  max-width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-  border: 4px solid var(--tbl-border);
-  border-radius: 8px;
-  background: var(--tbl-bg);
-  box-shadow: var(--tbl-shadow);
-  overflow: hidden;                /* round corners */
-  margin: 1rem 0;
+.markdown table {
+  border: 4px solid var(--tbl-border) !important;
+  border-radius: 8px !important;
+  background: var(--tbl-bg) !important;
+  box-shadow: var(--tbl-shadow) !important;
 }
 
 /* Header */
-.markdown thead th{
-  background: var(--tbl-head-bg);
-  color: var(--tbl-text);
-  font-weight: 600;
-  text-align: left;
-  padding: .6rem .8rem;
-  border-bottom: 1px solid var(--tbl-border);
-  white-space: nowrap;
+.markdown thead th {
+  background: var(--tbl-head-bg) !important;
+  color: var(--tbl-text) !important;
+  border-bottom: 1px solid var(--tbl-border) !important;
 }
 
 /* Cells */
-.markdown td{
-  color: var(--tbl-text);
-  padding: .55rem .8rem;
-  border-top: 1px solid var(--tbl-border);
-  vertical-align: top;
+.markdown td {
+  color: var(--tbl-text) !important;
+  border-top: 1px solid var(--tbl-border) !important;
 }
 
 /* Zebra + hover */
-.markdown tbody tr:nth-child(odd){
-  background: color-mix(in srgb, var(--tbl-bg) 94%, var(--tbl-text) 6%);
+.markdown tbody tr:nth-child(odd) {
+  background: color-mix(in srgb, var(--tbl-bg) 94%, var(--tbl-text) 6%) !important;
 }
-.markdown tbody tr:hover{
-  background: color-mix(in srgb, var(--tbl-bg) 90%, var(--tbl-accent) 10%);
+.markdown tbody tr:hover {
+  background: color-mix(in srgb, var(--tbl-bg) 90%, var(--tbl-accent) 10%) !important;
 }
 
 /* Code chips inside cells */
-.markdown td code{
-  background: var(--title-bg);
-  color: var(--title-text);
-  border: 1px solid var(--tbl-border);
-  padding: .05rem .35rem;
-  border-radius: 6px;
-  font-size: .9em;
+.markdown td code {
+  background: var(--title-bg) !important;
+  color: var(--title-text) !important;
+  border: 1px solid var(--tbl-border) !important;
 }
-
-/* Scroll on overflow (mobile) */
-.markdown table{ display: block; overflow-x: auto; }
 
 /* ===== Special fix: table-within-table layout ===== */
-/* Detect an outer table that only exists to place two inner tables side-by-side. */
-.markdown table:has(> tbody > tr > td > table){
-  border: none;
-  box-shadow: none;
-  background: transparent;
-  padding: 0;
+.markdown table:has(> tbody > tr > td > table) {
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
 }
 
-/* Make the inner tables look like two equal cards in a grid */
-.markdown table:has(> tbody > tr > td > table) > tbody > tr{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-}
-.markdown table:has(> tbody > tr > td > table) > tbody > tr > td{
-  border: none;
-  padding: 0;
+.markdown table:has(> tbody > tr > td > table) table {
+  border: 1px solid var(--tbl-border) !important;
+  border-radius: 12px !important;
+  background: var(--tbl-bg) !important;
+  box-shadow: var(--tbl-shadow) !important;
 }
 
-/* Style the inner tables themselves (reapply the card look) */
-.markdown table:has(> tbody > tr > td > table) table{
-  width: 100%;
-  border: 1px solid var(--tbl-border);
-  border-radius: 12px;
-  background: var(--tbl-bg);
-  box-shadow: var(--tbl-shadow);
-  overflow: hidden;
+.markdown table:has(> tbody > tr > td > table) th[colspan] {
+  background: var(--tbl-head-bg) !important;
+  color: var(--tbl-text) !important;
+  border: 1px solid var(--tbl-border) !important;
+  border-radius: 12px !important;
 }
 
-/* Outer heading row like “Supported types” */
-.markdown table:has(> tbody > tr > td > table) th[colspan]{
-  background: var(--tbl-head-bg);
-  color: var(--tbl-text);
-  font-weight: 700;
-  padding: .7rem .9rem;
-  border: 1px solid var(--tbl-border);
-  border-radius: 12px;
-  margin-bottom: .75rem;
-  display: block;                  /* make it look like a section header */
-}
 
 /* Responsive: stack the two columns under 700px */
 @media (max-width: 700px){
