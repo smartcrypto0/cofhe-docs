@@ -99,6 +99,7 @@ pre code {
   font-family: "Reddit Mono", monospace;
 }
 
+
 .separator-sidebar-item > div {
   padding: 0 !important;
 }
@@ -753,7 +754,7 @@ pre code:has(.code-block-diff-remove-line) {
 }
 
 [data-theme='dark']{
-  --code-bg:#122530;
+  --code-bg:#061d2b;
   --code-border:rgba(250,250,250,.08);
   --code-text:#fafafa;
   --code-shadow:0 10px 28px rgba(0,0,0,.45);
@@ -771,7 +772,7 @@ pre code:has(.code-block-diff-remove-line) {
   margin:.9rem 0;                /* tighter outside */
   border:1px solid var(--code-border);
   border-radius:var(--code-radius);
-  background:var(--code-bg);
+  background:var(--code-bg) !important;
   box-shadow:var(--code-shadow);
   overflow:hidden;
 }
