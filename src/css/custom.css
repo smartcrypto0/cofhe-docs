@@ -8,7 +8,7 @@ pre code {
   tab-size: 4;
 }
 
-:root {
+[data-theme='light'] {
   /* Primary brand accent — cyan */
   --ifm-color-primary: #001623;
   --ifm-color-primary-dark: #000f19;
