@@ -13,6 +13,19 @@ const config: Config = {
   title: 'Fhenix',
   tagline: 'Unlock Onchain Confidentiality on Ethereum',
   favicon: 'img/Favicon_Dark.svg',
+  
+  headTags: [
+    {
+      tagName: 'script',
+      attributes: {},
+      innerHTML: `
+        (function() {
+          const theme = localStorage.getItem('theme') || 'light';
+          document.documentElement.setAttribute('data-theme', theme);
+        })();
+      `,
+    },
+  ],
 
   // Set the production url of your site here
   url: 'https://fhenixprotocol.github.io',
@@ -48,12 +61,13 @@ const config: Config = {
   
   scripts: [
     {
-      src: '/scripts/styled-components-fix.js',
-      async: true,
-    },
-    {
       src: '/scripts/theme-fix.js',
       async: false,
+      defer: false,
+    },
+    {
+      src: '/scripts/styled-components-fix.js',
+      async: true,
     },
   ],
 

@@ -28,7 +28,6 @@ console.log("v0.1");
 
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
-  const { colorMode  } = useColorMode();
 
   return (
       <header style={{ zIndex: 1, position: 'relative' }} className={clsx('hero hero--primary', styles.heroBanner)}>
@@ -40,13 +39,13 @@ function HomepageHeader() {
 
                           <Heading as="h1" className="hero__title">
                               { /* siteConfig.title */} 
-                              <img className="fhenix-logo" alt="fhenix image" src={colorMode === 'dark' ? "img/assets/white-text-logo.svg" : "img/assets/dark-text-logo.svg"}/>
+                              <img className="fhenix-logo" alt="fhenix image" src="img/assets/dark-text-logo.svg"/>
                           </Heading>
                       </div>
                       <div className="row">
                           {/* <p className="hero__subtitle">{siteConfig.tagline}</p> */}
                           <p className="home__description">
-                          <span style={{ color: colorMode === 'dark' ? '#E6F7FF' : '#00162399' }}>Tools and resources to help you build, launch, and grow your app on Fhenix.</span>
+                          <span>Tools and resources to help you build, launch, and grow your app on Fhenix.</span>
                           </p>
                       </div>
                       <div className={clsx("row", styles.ButtonRow)} style={{ marginLeft: -30 , gap: '31px'}}>
@@ -99,7 +98,7 @@ function HomepageHeader() {
 
                   <div className="hide-small-width" style={{marginTop: "40px", position: 'relative', overflow: 'visible'}}>
                     {/* <div className="" style={{marginTop: "-100px"}}> */}
-                    { (colorMode === 'dark') ? <img className="page-cover-image" alt="fhenix stuttershock image" src="img/BookDark.svg" style={{maxWidth: '600px'}}/> : <img className="page-cover-image" alt="fhenix stuttershock image" src="img/BookLight.svg" style={{maxWidth: '600px'}}/>}
+                    <img className="page-cover-image" alt="fhenix stuttershock image" src="img/BookLight.svg" style={{maxWidth: '600px'}}/>
                     <div style={{
                         position: 'absolute',
                         top: '-25%',

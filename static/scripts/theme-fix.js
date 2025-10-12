@@ -3,42 +3,53 @@
   // Check if we're in a browser environment
   if (typeof window === 'undefined') return;
   
-  function applyTheme() {
-    // Get the stored theme preference (Docusaurus uses 'theme' key)
+  function getTheme() {
     const storedTheme = localStorage.getItem('theme');
     const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    return storedTheme || (prefersDark ? 'dark' : 'light');
+  }
+  
+  function updateImages(theme) {
+    // Update logo
+    const logos = document.querySelectorAll('.fhenix-logo');
+    logos.forEach(function(logo) {
+      logo.src = theme === 'dark' 
+        ? '/img/assets/white-text-logo.svg' 
+        : '/img/assets/dark-text-logo.svg';
+    });
     
-    // Determine the theme to apply
-    let theme = 'light'; // default
-    if (storedTheme) {
-      theme = storedTheme;
-    } else if (prefersDark) {
-      theme = 'dark';
-    }
+    // Update book image
+    const bookImages = document.querySelectorAll('.page-cover-image');
+    bookImages.forEach(function(bookImage) {
+      bookImage.src = theme === 'dark' 
+        ? '/img/BookDark.svg' 
+        : '/img/BookLight.svg';
+    });
+  }
+  
+  function applyTheme() {
+    const theme = getTheme();
     
-    // Apply the theme immediately to prevent FOUC
-    document.documentElement.setAttribute('data-theme', theme);
-    
-    // Also apply to body for additional compatibility
-    if (document.body) {
-      document.body.setAttribute('data-theme', theme);
-    }
+    // Update images immediately if they exist
+    updateImages(theme);
     
     return theme;
   }
   
   // Apply theme immediately
-  const currentTheme = applyTheme();
+  let currentTheme = applyTheme();
   
-  // Also apply when DOM is ready (for additional safety)
+  // Reapply when DOM is fully ready (catches images that load during page construction)
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', applyTheme);
+    document.addEventListener('DOMContentLoaded', function() {
+      currentTheme = applyTheme();
+    });
   }
   
   // Listen for storage changes to sync across tabs
   window.addEventListener('storage', function(e) {
     if (e.key === 'theme') {
-      applyTheme();
+      currentTheme = applyTheme();
     }
   });
 })();
