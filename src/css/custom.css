@@ -582,27 +582,11 @@ html[data-theme='dark'] .header-github-link:before {
   max-width: 65%;
 }
 
-/* CSS-only logo switching to prevent hydration issues */
-.fhenix-logo {
-  /* Default to dark logo for light mode */
-  content: url("/img/assets/dark-text-logo.svg");
-}
-
-[data-theme='dark'] .fhenix-logo {
-  /* Switch to white logo for dark mode */
-  content: url("/img/assets/white-text-logo.svg");
-}
+/* Keep logo styling simple */
 
 .page-cover-image {
   /*margin-top: 40px;*/
   opacity: 0.2;
-  /* Default to light book image */
-  content: url("/img/BookLight.svg");
-}
-
-[data-theme='dark'] .page-cover-image {
-  /* Switch to dark book image for dark mode */
-  content: url("/img/BookDark.svg");
 }
 
 img[alt=Bullet] { width: 18px; }
@@ -883,23 +867,41 @@ pre code[class*="language-"]{
 }
 
 /* CSS-only fallbacks for card text that depends on JavaScript colorMode */
-/* Target card body and all text elements within */
-.custom__card .card__body,
-.custom__card_1 .card__body {
-  color: #001623; /* Default light mode color */
+/* More aggressive selectors to override inline styles */
+
+/* Light mode - default colors */
+[data-theme='light'] .custom__card,
+[data-theme='light'] .custom__card_1,
+[data-theme='light'] .custom__card .card__body,
+[data-theme='light'] .custom__card_1 .card__body {
+  color: #001623 !important;
 }
 
+[data-theme='light'] .custom__card h2,
+[data-theme='light'] .custom__card_1 h2,
+[data-theme='light'] .custom__card .card__body h2,
+[data-theme='light'] .custom__card_1 .card__body h2 {
+  color: #001623 !important;
+}
+
+[data-theme='light'] .custom__card p,
+[data-theme='light'] .custom__card_1 p,
+[data-theme='light'] .custom__card .card__body p,
+[data-theme='light'] .custom__card_1 .card__body p {
+  color: #001623 !important;
+}
+
+[data-theme='light'] .custom__card svg,
+[data-theme='light'] .custom__card_1 svg {
+  color: #001623 !important;
+}
+
+/* Dark mode - light colors */
+[data-theme='dark'] .custom__card,
+[data-theme='dark'] .custom__card_1,
 [data-theme='dark'] .custom__card .card__body,
 [data-theme='dark'] .custom__card_1 .card__body {
   color: #E6F7FF !important;
-}
-
-/* Target headings specifically */
-.custom__card h2,
-.custom__card_1 h2,
-.custom__card .card__body h2,
-.custom__card_1 .card__body h2 {
-  color: #001623 !important; /* Default light mode color with !important to override inline styles */
 }
 
 [data-theme='dark'] .custom__card h2,
@@ -909,25 +911,11 @@ pre code[class*="language-"]{
   color: #E6F7FF !important;
 }
 
-/* Target paragraphs specifically */
-.custom__card p,
-.custom__card_1 p,
-.custom__card .card__body p,
-.custom__card_1 .card__body p {
-  color: #001623 !important; /* Default light mode color with !important to override inline styles */
-}
-
 [data-theme='dark'] .custom__card p,
 [data-theme='dark'] .custom__card_1 p,
 [data-theme='dark'] .custom__card .card__body p,
 [data-theme='dark'] .custom__card_1 .card__body p {
   color: #E6F7FF !important;
-}
-
-/* Fix SVG icons in cards */
-.custom__card svg,
-.custom__card_1 svg {
-  color: #001623 !important; /* Default light mode color */
 }
 
 [data-theme='dark'] .custom__card svg,
