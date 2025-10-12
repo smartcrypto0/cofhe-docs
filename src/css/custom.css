@@ -582,17 +582,27 @@ html[data-theme='dark'] .header-github-link:before {
   max-width: 65%;
 }
 
-.fhenix-logo  {
-  /*filter: brightness(0) saturate(100%) invert(28%) sepia(94%) saturate(1960%) hue-rotate(197deg) brightness(97%) contrast(101%);*/
+/* CSS-only logo switching to prevent hydration issues */
+.fhenix-logo {
+  /* Default to dark logo for light mode */
+  content: url("/img/assets/dark-text-logo.svg");
+}
+
+[data-theme='dark'] .fhenix-logo {
+  /* Switch to white logo for dark mode */
+  content: url("/img/assets/white-text-logo.svg");
 }
 
 .page-cover-image {
   /*margin-top: 40px;*/
   opacity: 0.2;
+  /* Default to light book image */
+  content: url("/img/BookLight.svg");
 }
 
-html[data-theme='light'] .page-cover-image  {
-  /* filter: brightness(0) saturate(100%) invert(28%) sepia(94%) saturate(1960%) hue-rotate(197deg) brightness(97%) contrast(101%); */
+[data-theme='dark'] .page-cover-image {
+  /* Switch to dark book image for dark mode */
+  content: url("/img/BookDark.svg");
 }
 
 img[alt=Bullet] { width: 18px; }
@@ -744,16 +754,16 @@ pre code:has(.code-block-diff-remove-line) {
 }
 
 [data-theme='dark']{
-  --code-bg:#061d2b;
-  --code-border:rgba(250,250,250,.08);
-  --code-text:#fafafa;
-  --code-shadow:0 10px 28px rgba(0,0,0,.45);
+  --code-bg:#061d2b !important;
+  --code-border:rgba(250,250,250,.08) !important;
+  --code-text:#fafafa !important;
+  --code-shadow:0 10px 28px rgba(0,0,0,.45) !important;
 
-  --title-bg:#001623;
-  --title-text:#fafafa;
+  --title-bg:#001623 !important;
+  --title-text:#fafafa !important;
 
-  --copy-bg:#0ad9dc;
-  --copy-text:#001623;
+  --copy-bg:#0ad9dc !important;
+  --copy-text:#001623 !important;
 }
 
 /* Card */
@@ -787,7 +797,7 @@ pre code:has(.code-block-diff-remove-line) {
 .theme-code-block .prism-code,
 pre code[class*="language-"]{
   background: var(--code-bg) !important;
-  color:var(--code-text);
+  color:var(--code-text) !important;
   /* Correct, modern mono stack (Geist/JetBrains first if present) */
   font-family:"Inter", "Geist Mono","JetBrains Mono","Fira Code",
                ui-monospace,SFMono-Regular,Menlo,Consolas,Monaco,monospace;
@@ -796,6 +806,24 @@ pre code[class*="language-"]{
   letter-spacing:-.005em;
   tab-size:2;
   -webkit-font-smoothing:antialiased;
+}
+
+/* Explicit dark mode styles for code blocks to ensure production compatibility */
+[data-theme='dark'] .theme-code-block {
+  background: #061d2b !important;
+  border-color: rgba(250,250,250,.08) !important;
+}
+
+[data-theme='dark'] .theme-code-block .prism-code,
+[data-theme='dark'] pre code[class*="language-"] {
+  background: #061d2b !important;
+  color: #fafafa !important;
+}
+
+[data-theme='dark'] .theme-code-block-title {
+  background: #001623 !important;
+  color: #fafafa !important;
+  border-bottom-color: rgba(250,250,250,.08) !important;
 }
 
 /* Ensure wrapping looks good */
@@ -828,6 +856,126 @@ pre code[class*="language-"]{
   border-radius:6px;
   font-size:.88em;
 }
+
+/* Explicit dark mode styles for inline code */
+[data-theme='dark'] :not(pre)>code {
+  background: #001623 !important;
+  color: #fafafa !important;
+  border-color: rgba(250,250,250,.08) !important;
+}
+
+/* Additional dark mode fixes for production builds - targeting specific elements only */
+[data-theme='dark'] .main-wrapper {
+  background-color: #001623 !important;
+}
+
+[data-theme='dark'] .docusaurus-highlight-code-line {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Fix homepage FOUC issues by providing CSS-only dark mode styles */
+[data-theme='dark'] .home__description span {
+  color: #E6F7FF !important;
+}
+
+[data-theme='light'] .home__description span {
+  color: #00162399 !important;
+}
+
+/* CSS-only fallbacks for card text that depends on JavaScript colorMode */
+/* Target card body and all text elements within */
+.custom__card .card__body,
+.custom__card_1 .card__body {
+  color: #001623; /* Default light mode color */
+}
+
+[data-theme='dark'] .custom__card .card__body,
+[data-theme='dark'] .custom__card_1 .card__body {
+  color: #E6F7FF !important;
+}
+
+/* Target headings specifically */
+.custom__card h2,
+.custom__card_1 h2,
+.custom__card .card__body h2,
+.custom__card_1 .card__body h2 {
+  color: #001623 !important; /* Default light mode color with !important to override inline styles */
+}
+
+[data-theme='dark'] .custom__card h2,
+[data-theme='dark'] .custom__card_1 h2,
+[data-theme='dark'] .custom__card .card__body h2,
+[data-theme='dark'] .custom__card_1 .card__body h2 {
+  color: #E6F7FF !important;
+}
+
+/* Target paragraphs specifically */
+.custom__card p,
+.custom__card_1 p,
+.custom__card .card__body p,
+.custom__card_1 .card__body p {
+  color: #001623 !important; /* Default light mode color with !important to override inline styles */
+}
+
+[data-theme='dark'] .custom__card p,
+[data-theme='dark'] .custom__card_1 p,
+[data-theme='dark'] .custom__card .card__body p,
+[data-theme='dark'] .custom__card_1 .card__body p {
+  color: #E6F7FF !important;
+}
+
+/* Fix SVG icons in cards */
+.custom__card svg,
+.custom__card_1 svg {
+  color: #001623 !important; /* Default light mode color */
+}
+
+[data-theme='dark'] .custom__card svg,
+[data-theme='dark'] .custom__card_1 svg {
+  color: #E6F7FF !important;
+}
+
+/* Homepage feature cards - removed redundant styles as they're already handled in styles.module.css */
+
+/* Ensure proper background for the entire page */
+[data-theme='dark'] html {
+  background: linear-gradient(270deg, #00253d, #001724) !important;
+}
+
+[data-theme='light'] html {
+  background: #fafafa !important;
+}
+
+/* Fix "Useful Links" and "Connect With US" headings - only dark mode override needed */
+[data-theme='dark'] .orb-font {
+  color: #fafafa !important;
+}
+
+/* Fix feature container text colors - only dark mode override needed */
+[data-theme='dark'] .feature_container {
+  color: #E6F7FF !important;
+}
+
+/* Target only main content text, not admonitions or special elements */
+[data-theme='dark'] .theme-doc-markdown.markdown > p,
+[data-theme='dark'] .theme-doc-markdown.markdown > ul li,
+[data-theme='dark'] .theme-doc-markdown.markdown > ol li {
+  color: #fafafa !important;
+}
+
+/* Ensure admonitions work properly in dark mode */
+[data-theme='dark'] .theme-admonition {
+  background: var(--admo-bg) !important;
+}
+
+[data-theme='dark'] .theme-admonition [class^="admonitionHeading"],
+[data-theme='dark'] .theme-admonition [class^="admonitionContent"] {
+  color: var(--admo-text) !important;
+}
+
+[data-theme='dark'] .theme-admonition [class^="admonitionContent"] p {
+  color: var(--admo-text) !important;
+}
 /* notes styling */
 
 /* ===== Brand-style Admonitions (bubble card) ===== */
@@ -844,8 +992,8 @@ pre code[class*="language-"]{
 }
 
 [data-theme='dark']{
-  --admo-text:    #fafafa;
-  --admo-bg:      #122530;
+  --admo-text:    #fafafa !important;
+  --admo-bg:      #122530 !important;
 }
 
 /* Base card polish */

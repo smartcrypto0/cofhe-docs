@@ -51,6 +51,10 @@ const config: Config = {
       src: '/scripts/styled-components-fix.js',
       async: true,
     },
+    {
+      src: '/scripts/theme-fix.js',
+      async: false,
+    },
   ],
 
   presets: [
@@ -93,6 +97,9 @@ const config: Config = {
     // Replace with your project's social card
     image: 'img/Splash.webp',
     colorMode: {
+      defaultMode: 'light',
+      disableSwitch: false,
+      respectPrefersColorScheme: true,
     },
     navbar: {
       title: 'Fhenix Docs',
