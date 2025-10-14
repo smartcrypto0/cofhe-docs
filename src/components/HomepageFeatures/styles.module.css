@@ -29,7 +29,7 @@
   transition: box-shadow .3s, background .3s;
   width: 100%;
   /* background: var(--ifm-color-background); */
-  /* border: 1.5px solid var(--ifm-color-text); */
+  border: 1.5px solid rgb(188 190 192);
   /* box-shadow: 0px 0px 25px 0px rgba(255, 255, 255, 0.10); */
   border-radius: 20.2632px;
   /* justify-content: center; */
@@ -48,7 +48,7 @@ html[data-theme='dark'] .custom__card {
 .custom__card_1 {
   /* Rectangle 39 */
   background: #fff;
-  
+  border: 1.5px solid rgb(188 190 192);
   height: 308px;
   box-sizing: border-box;
   /* transition: box-shadow .3s; */
@@ -79,8 +79,6 @@ html[data-theme='light'] {
 html[data-theme='dark'] {
   background: linear-gradient(270deg, #00253d, #001724);
 }
-
-
 
 
 @media  (max-width: 1440px) {
