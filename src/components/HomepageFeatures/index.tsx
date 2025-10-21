@@ -177,8 +177,8 @@ export default function HomepageFeatures(): JSX.Element {
               <div style={{ display: 'flex', justifyContent: 'flex-start', marginTop: '10px' }}>
                 <Link
                     className='tutorial-button minimum'
-                    to="https://cdn.forms-content-1.sg-form.com/bc6341d0-c9d3-11ee-8af0-8a5e6a16f9f5">
-                    Sign Up
+                    >
+                    Coming Soon
                 </Link>
               </div>
 
