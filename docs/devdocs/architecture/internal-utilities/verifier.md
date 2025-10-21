@@ -38,7 +38,7 @@ The process of sending input(s) to a Smart Contract:
 4. ZK-Verifier returns the signed approval to User.
 5. User sends `(ciphertext, signed_approve)` (one or more) as input(s) to a contract call.
 6. Contract verifies the signed message, approving the input(s).
-7. Cotnract peforms actual logic.
+7. Contract performs actual logic.
 
 As mentioned, most of this process is abstracted away. In fact, steps 1-6 are all handled behind the scenes, while step 7 (the actual logic) is, of course, up to the user to write.
 
